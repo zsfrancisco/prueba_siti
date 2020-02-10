@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedido index{% endblock %}
+
+{% block body %}
+
+    {% set cont = 0 %}
+
+    <h1>Lista de pedidos pendientes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Contrato</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+            {% if pedido.estPed == "P" %}
+            <tr>
+                {# {% set  %} #}
+                <td>{{ pedido.id }}</td>
+                <td>{{ pedido.fecPed ? pedido.fecPed|date('Y-m-d') : '' }}</td>
+                <td> {{ pedido.getIdCli().getNomCli() }} </td>
+                <td> <a href= " {{ path('contrato_show',  {'id': pedido.id}) }} " >Ver contrato</a> </td>
+
+                {# <td> {{ pedido.getIdCli() }} </td> #}
+                <td>
+                    <a href="{{ path('pedido_show', {'id': pedido.id}) }}">show</a>
+                    <a href="{{ path('pedido_edit', {'id': pedido.id}) }}">edit</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pedido_new') }}">Create new</a>
+{% endblock %}

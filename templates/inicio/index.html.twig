@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InicioController!{% endblock %}
+
+{% block body %}
+
+<h1>Administracion</h1>
+
+<a href=" {{ path('pedido_index') }} "> Visualizar Pedidos </a> <br>
+<a href=" {{ path('pedido_new') }} "> Nuevo pedido </a>
+
+{% endblock %}
